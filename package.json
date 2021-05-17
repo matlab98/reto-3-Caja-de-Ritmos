@@ -1,17 +1,25 @@
 {
   "name": "reto-3",
   "version": "1.0.0",
+  "description": "Caja de ritmos",
   "main": "index.js",
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.3",
-    "@fortawesome/fontawesome-svg-core": "^1.2.35",
-    "@fortawesome/free-solid-svg-icons": "^5.15.3",
-    "@fortawesome/react-fontawesome": "^0.1.14",
-    "font-awesome": "^4.7.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "styled-components": "^5.3.0"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matlab98/reto-3-Caja-de-Ritmos.git"
+  },
+  "author": "Hilder Arrieta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matlab98/reto-3-Caja-de-Ritmos/issues"
+  },
+  "homepage": "https://github.com/matlab98/reto-3-Caja-de-Ritmos",
   "devDependencies": {
     "@babel/core": "^7.14.2",
     "@babel/preset-env": "^7.14.2",
@@ -22,25 +30,10 @@
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.6.0",
-    "webpack": "^5.36.2",
-    "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-cli": "^4.7.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --mode development",
-    "build": "webpack --mode production"
-  },
-  "author": "Hilder Arrieta",
-  "license": "ISC",
-  "keywords": [],
-  "description": "Es un proyecto de caja de ramos",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/matlab98/Sprint_2_AG.git"
-  },
-  "bugs": {
-    "url": "https://github.com/matlab98/Sprint_2_AG/issues"
-  },
-  "homepage": "https://github.com/matlab98/Sprint_2_AG#readme"
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
 }
