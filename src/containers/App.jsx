@@ -6,14 +6,24 @@ export default class App extends React.Component {
         sounds: []
     }
 
+   
     componentDidMount() {
         axios.get(`https://reto2-ag.herokuapp.com/Dock`)
             .then(res => {
                 const sounds = res.data;
                 this.setState({ sounds });
             })
+            document.addEventListener("keydown", this.handleKeyDown);
     }
-
+    
+    handleKeyDown = (e) => {
+        let key = document.getElementById((`${e.key}`).toUpperCase())
+        if(key){ 
+          key.firstElementChild.play()
+          let display = document.getElementById("display");
+          display.textContent = key.id
+        }  
+    }
 
     render() {
         const handleClick = (e) => {
@@ -21,44 +31,38 @@ export default class App extends React.Component {
             e.target.firstElementChild.play();
             display.textContent = e.target.id
         }
-        
-                const handleKeyUp = (e) => {
-                    let button = document.getElementById(`${e.code}`)
-                    if (button) {
-                        button.firstElementChild.play()
-                        let display = document.getElementById("display");
-                        display.textContent = button.id
-                    }
-                }
-                document.addEventListener("keyup",handleKeyUp)
+
+
         return (
             <div id="wrapper">
-                <div id="drum-machine" class="container">
-                    <div class="sampler">
-                        <div class="strap one"></div>
-                        <div class="strap two"></div>
-                        <div class="top-plate"></div>
-                        <div class="on-button"></div>
-                        <div class="detail-strip">
-                            <div class="strip-one"></div>
-                            <div class="strip-two"></div>
-                            <div class="strip-three"></div>
-                            <div class="strip-four"></div>
+                <div id="drum-machine" className="container">
+                    <div className="sampler">
+                        <div className="strap one"></div>
+                        <div className="strap two"></div>
+                        <div className="top-plate"></div>
+                        <div className="on-button"></div>
+                        <div className="detail-strip">
+                            <div className="strip-one"></div>
+                            <div className="strip-two"></div>
+                            <div className="strip-three"></div>
+                            <div className="strip-four"></div>
                         </div>
-                        <div id="display" class="screen"><span class='screen-info'></span></div>
+                        <div id="display" className="screen"><span className='screen-info'></span></div>
                         <div id="slider"></div>
-                        <div class="bank-one active"></div>
-                        <div class="bank-two"></div>
-                        <div id="drums-container" class="pad-container">
+                        <div className="bank-one active"></div>
+                        <div className="bank-two"></div>
+                        <div id="drums-container" >
+
+                        </div>
+                        <div className="pad-container">
                             {
-                                this.state.sounds.map(el =>
-                                    <div id={el.code} name={el.id} key={el.id} onClick={handleClick} className="pad drum-pad" >
-                                        {el.key}
-                                        <audio id={el.key} className="clip" src={el.url}></audio>
-                                    </div>)
+                                this.state.sounds.map(el => <div id={el.key} name={el.id} key={el.id} onClick={handleClick} className="pad drum-pad" >
+                                    {el.key}
+                                    <audio id={el.key} className="clip" src={el.url}></audio>
+                                </div>)
                             }
                         </div>
-                        <div class="bottom-plate"></div>
+                        <div className="bottom-plate"></div>
                     </div>
                 </div></div>
 
