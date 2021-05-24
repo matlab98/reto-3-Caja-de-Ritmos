@@ -1,3 +1,294 @@
+* {
+    position: relative;
+  }
+  
+  .container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e5e6e8;
+  }
+  
+  .sampler {
+    padding: 1em;
+    width: 20em;
+    height: 15em;
+    border: 5px solid;
+    display: flex;
+    background: #f7f7f7;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 7px 7px lightgray;
+    transition: box-shadow 0.1s;
+  }
+  .sampler.highlight {
+    box-shadow: 0px 0px 20px 5px gray;
+  }
+  
+  .bottom-plate,
+  .top-plate {
+    position: absolute;
+    width: 100%;
+    height: 2.7em;
+    background: #d4d5d9;
+    margin-left: -1em;
+    margin-top: -1em;
+    box-shadow: 0px 4px 0px #efeff1 inset, 0px -8px 0px #b9bbc1 inset;
+    border-bottom: 5px solid;
+    z-index: 1000;
+  }
+  
+  .on-button {
+    position: absolute;
+    height: 1em;
+    width: 1em;
+    background: #F44336;
+    border-radius: 50%;
+    top: 7%;
+    left: 90%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    box-shadow: #f99d97 0px 0px 4px 4px;
+    z-index: 1000;
+  }
+  
+  .bottom-plate {
+    top: 99%;
+    z-index: 0;
+    left: 4.5%;
+    border-top: 4px solid;
+    height: 1.5em;
+  }
+  
+  .pad-container {
+    position: absolute;
+    top: 60%;
+    left: 3%;
+    transform: translateY(-50%);
+    height: 50%;
+    width: 10em;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.5em 0.5em 0;
+  }
+  
+  .pad {
+    height: 2.3em;
+    width: calc(50% * (1/3));
+    border: 3px solid;
+    background: #bababa;
+    margin-left: 0.5em;
+    margin-top: 0.5em;
+    flex-grow: 1;
+    box-shadow: #ededed 0px 4px 0px inset, #7a7a7a 0px -4px 0px inset, #adadad 0px 3px 0px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #444;
+  }
+  .pad.pressed {
+    box-shadow: #939393 -4px 4px 4px inset;
+    top: 3px;
+    color: #666;
+  }
+  
+  .detail-strip {
+    width: 100%;
+    height: 2.3em;
+    margin-top: 2.5em;
+    background: #fff0e2;
+  }
+  
+  .strip-one {
+    height: 5px;
+    width: 3em;
+    background: #8d8d8d;
+    right: 0;
+    bottom: 10%;
+    position: absolute;
+  }
+  
+  .strip-two {
+    height: 3px;
+    width: 2em;
+    background: #8d8d8d;
+    right: 0;
+    bottom: 39%;
+    position: absolute;
+  }
+  
+  .strip-three {
+    height: 1em;
+    width: 5em;
+    background: #f89d82;
+    left: 10%;
+    bottom: 39%;
+    position: absolute;
+  }
+  
+  .strip-four {
+    height: 5px;
+    width: 2em;
+    background: #f89d82;
+    left: 38%;
+    bottom: 39%;
+    position: absolute;
+  }
+  
+  .strip-five {
+    height: 5px;
+    width: 2em;
+    background: #8d8d8d;
+    left: 72%;
+    top: 80%;
+    position: absolute;
+    z-index: 1000;
+  }
+  
+  .bank-two,
+  .bank-one {
+    height: 1em;
+    width: 1em;
+    border-radius: 50%;
+    background: #8d8d8d;
+    left: 70%;
+    top: 80%;
+    position: absolute;
+    cursor: pointer;
+  }
+  .bank-two.active,
+  .bank-one.active {
+    background: #00bcd4;
+    box-shadow: 0px 0px 5px 2px #3be9ff;
+  }
+  
+  .bank-two {
+    left: 77%;
+  }
+  .bank-two.active {
+    background: #f57752;
+    box-shadow: 0px 0px 5px 2px #f89d82;
+  }
+  
+  .screen {
+    position: absolute;
+    height: 4em;
+    width: 8em;
+    background: #bfeecc;
+    left: 58.8%;
+    top: 37%;
+    box-shadow: #4a505a 0px 0px 0px 5px inset, #616976 0px 0px 0px 15px inset, 0px 4px lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .screen-info {
+    font-family: "Press Start 2P";
+    font-size: 0.3em;
+  }
+  
+  .strap {
+    position: absolute;
+    width: 2.5em;
+    height: 0%;
+    background: black;
+    z-index: 100000;
+    top: 0;
+    left: 0;
+    transform: translateX(-50%);
+    box-shadow: 0px 5px 2px;
+  }
+  .strap.one {
+    left: 25%;
+  }
+  .strap.two {
+    left: 75%;
+  }
+  
+  .handle {
+    height: 5em;
+    width: 15em;
+    background: #9ea0a9;
+    position: fixed;
+    top: 40%;
+    border: 8px solid;
+    border-bottom: 0;
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  .handle .handle-inner {
+    position: absolute;
+    height: 50%;
+    width: 80%;
+    background: #e5e6e8;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-40%);
+    border: 8px solid;
+    border-bottom: 0;
+  }
+  
+  #slider {
+    background: darkgray;
+    color: red;
+    z-index: 100;
+    width: 100px;
+    position: absolute;
+    left: 63%;
+    top: 70%;
+    border: 0;
+    border-radius: 0;
+  }
+  
+  .ui-corner-all {
+    background: darkgray;
+  }
+  
+  .ui-widget-content > .ui-state-default {
+    border: 0;
+    background: linear-gradient(90deg, #278BA8 40%, #19586a 41%, #19586a 59%, #278BA8 60%);
+    cursor: pointer;
+    transform: translateY(2px);
+    border-radius: 0;
+  }
+  .ui-widget-content > .ui-state-default:active {
+    outline: none;
+  }
+  .ui-widget-content > .ui-state-default:focus {
+    outline: none;
+  }
+
+
+#drum-machine{
+    height: 250px;
+    width: 250px;
+    background-color: lightgrey;
+    text-align: center;
+    border-radius: 20%;
+  }
+  
+  #drums-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  
+  .drum-pad{
+    background-color: slategray;
+    display: inline-block;
+    width: 30%;
+    margin: 2px;
+    padding: 16px;
+    border-radius: 20%;
+    cursor: pointer;
+  }
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
