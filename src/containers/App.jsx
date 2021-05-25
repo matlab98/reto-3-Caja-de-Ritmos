@@ -2,13 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import style from '../utils/format.css';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-
+import Tecla from '../components/tecla';
 export default class App extends React.Component {
     constructor(props) {
         super();
         this.state = {
-            sounds: [],
-            activeTab: props.activeTab || 1
+            sounds: []
         };
 
     }
@@ -18,21 +17,13 @@ export default class App extends React.Component {
             .then(res => {
                 const sounds = res.data;
                 this.setState({ sounds });
+                
             })
-        document.addEventListener("keydown", this.handleKeyDown);
-    }
 
-    handleKeyDown = (e) => {
-        let key = document.getElementById((`${e.key}`).toUpperCase())
-        if (key) {
-            key.firstElementChild.play()
-            let display = document.getElementById("display");
-            display.textContent = key.id
-        }
     }
-
 
     render() {
+        console.log(this.state.sounds.Dock)
         const handleClick = (e) => {
             let display = document.getElementById("display");
             e.target.firstElementChild.play();
@@ -69,45 +60,32 @@ export default class App extends React.Component {
                         <div className="screen">
                             <span id="display" className='screen-info'></span></div>
                         <div id="slider"></div>
-                        
                         <div id="drums-container" >
-
                         </div>
                         <div className="pad-container">
                         
                         <Tabs>
                     <TabList>
-                        <Tab className=" bank-one">One</Tab>
-                        <Tab className=" bank-two">Two</Tab>
+                        <Tab className="bank-one">Uno</Tab>
+                        <Tab className="bank-two">Dos</Tab>
                     </TabList>
 
                     <TabPanels>
                         <TabPanel>
                         <div className="drum-pad">
+                        
                         {
                                 this.state.sounds.map(el =>
-                                    <div id={el.key}
-                                        name={el.id}
-                                        key={el.id}
-                                        onClick={handleClick}
-                                        className="pad drum-pad">{el.key}
-
-                                        <audio id={el.key} className="clip" src={el.url}></audio>
-                                    </div>)
+                                    <Tecla sound={[el]}/>
+                                    )
                             }</div>
                         </TabPanel>
                         <TabPanel>
                         <div className="drum-pad">
                         {
                                 this.state.sounds.map(el =>
-                                    <div id={el.key}
-                                        name={el.id}
-                                        key={el.id}
-                                        onClick={handleClick}
-                                        className="pad drum-pad">{el.key}
-
-                                        <audio id={el.key} className="clip" src={el.url}></audio>
-                                    </div>)
+                                    <Tecla sound={[el]}/>
+                                    )
                             }</div>
                         </TabPanel>
                     </TabPanels>
